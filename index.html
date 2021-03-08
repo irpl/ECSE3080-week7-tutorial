@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="new-dish-form">
+      <form>
+        <div>
+          <label for="new-dish-name">Name</label>
+          <input type="text" name="" id="new-dish-name" />
+        </div>
+
+        <div>
+          <label for="new-dish-vegan">is Vegan?</label>
+          <input type="text" name="" id="new-dish-vegan" />
+        </div>
+
+        <div>
+          <label for="new-dish-cost">Cost</label>
+          <input type="text" name="" id="new-dish-cost" />
+        </div>
+        <div>
+          <label for="new-dish-img">Image URL</label>
+          <input type="text" name="" id="new-dish-img" />
+        </div>
+        <input type="submit" value="Submit" id="new-dish-submit" />
+      </form>
+    </div>
+    <div class="container"></div>
+    <script>
+      function createDish() {
+        var dishCardDiv = document.createElement("DIV");
+        dishCardDiv.classList.add("dish-card");
+
+        var dishImgDiv = document.createElement("DIV");
+        dishImgDiv.classList.add("dish-img");
+
+        var dishImgImg = document.createElement("IMG");
+        dishImgImg.setAttribute("id", "dish-img");
+
+        dishImgDiv.appendChild(dishImgImg);
+        dishCardDiv.appendChild(dishImgDiv);
+
+        var dishInfoDiv = document.createElement("DIV");
+        dishInfoDiv.classList.add("dish-info");
+
+        var dishEditDiv = document.createElement("DIV");
+        dishEditDiv.classList.add("dish-edit");
+        dishInfoDiv.appendChild(dishEditDiv);
+
+        var dishInfoNameDiv = document.createElement("DIV");
+        dishInfoNameDiv.classList.add("dish-info-name");
+
+        var dishNameDiv = document.createElement("SPAN");
+        dishNameDiv.classList.add("dish-name");
+        dishInfoNameDiv.appendChild(dishNameDiv);
+
+        var dishInfoVeganDiv = document.createElement("DIV");
+        dishInfoVeganDiv.classList.add("dish-info-vegan");
+
+        var dishVeganDiv = document.createElement("SPAN");
+        dishVeganDiv.classList.add("dish-vegan");
+        dishInfoVeganDiv.appendChild(dishVeganDiv);
+
+        var dishInfoCostDiv = document.createElement("DIV");
+        dishInfoCostDiv.classList.add("dish-info-Cost");
+
+        var dishCostDiv = document.createElement("SPAN");
+        dishCostDiv.classList.add("dish-cost");
+        dishInfoCostDiv.innerHTML = "$";
+        dishInfoCostDiv.appendChild(dishCostDiv);
+
+        var dishDetailDiv = document.createElement("DIV");
+        dishDetailDiv.classList.add("dish-detail");
+
+        var dishDetailPFDiv = document.createElement("DIV");
+        dishDetailPFDiv.classList.add("dish-detail-pf");
+
+        var dishDetailDelDiv = document.createElement("DIV");
+        dishDetailDelDiv.classList.add("dish-detail-del");
+
+        var dishDelImg = document.createElement("IMG");
+        dishDelImg.src = "del.png";
+        dishDetailDelDiv.appendChild(dishDelImg);
+
+        dishDetailDiv.appendChild(dishDetailPFDiv);
+        dishDetailDiv.appendChild(dishDetailDelDiv);
+
+        dishInfoDiv.appendChild(dishInfoNameDiv);
+        dishInfoDiv.appendChild(dishInfoVeganDiv);
+        dishInfoDiv.appendChild(dishInfoCostDiv);
+
+        dishCardDiv.append(dishInfoDiv);
+        dishCardDiv.append(dishDetailDiv);
+
+        return dishCardDiv;
+      }
+      // document.getElementById("dish-delete").addEventListener("click", function (event) {});
+      var container = document.querySelector(".container");
+
+      var dishlist = [1, 2, 3, 4, 5, 6, 7, 8];
+
+      dishlist.forEach((dish) => {
+        container.appendChild(createDish());
+      });
+
+      // container.appendChild(createDish());
+      // container.appendChild(createDish());
+      // container.appendChild(createDish());
+      // POST
+      // document.getElementById("new-dish-submit").addEventListener("click", function (event) {
+      //   event.preventDefault();
+      //   let dishName = document.getElementById("new-dish-name").value;
+      //   let dishVegan = JSON.parse(document.getElementById("new-dish-vegan").value);
+      //   let dishCost = document.getElementById("new-dish-cost").value;
+      //   let dishImage = document.getElementById("new-dish-img").value;
+
+      //   let jsonBody = {
+      //     name: dishName,
+      //     vegan: dishVegan,
+      //     cost: dishCost,
+      //     img: dishImage,
+      //   };
+
+      //   fetch("http://localhost:5000/dish", {
+      //     method: "POST",
+      //     body: JSON.stringify(jsonBody),
+      //     headers: {
+      //       "Content-type": "application/json",
+      //     },
+      //   })
+      //     .then((res) => res.json())
+      //     .then((json) => console.log(json));
+      // });
+
+      // // GET
+      // fetch("http://localhost:5000/dish")
+      //   .then((res) => res.json())
+      //   .then((json) => {
+      //     let dish = json[1];
+      //     document.getElementById("dish-name").innerHTML = dish.name;
+      //     document.getElementById("dish-vegan").innerHTML = dish.vegan == true ? "Is Vegan" : "Not Vegan";
+      //     document.getElementById("dish-cost").innerHTML = dish.cost;
+      //     document.getElementById("dish-img").src = dish.img;
+      //     document.getElementById("dish-id").innerHTML = dish.id;
+      //   });
+    </script>
+  </body>
+</html>
