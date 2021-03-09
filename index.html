@@ -33,7 +33,7 @@
     </div>
     <div class="container"></div>
     <script>
-      function createDish() {
+      function createDishCard(dish) {
         var dishCardDiv = document.createElement("DIV");
         dishCardDiv.classList.add("dish-card");
 
@@ -42,6 +42,7 @@
 
         var dishImgImg = document.createElement("IMG");
         dishImgImg.setAttribute("id", "dish-img");
+        dishImgImg.src = dish.img;
 
         dishImgDiv.appendChild(dishImgImg);
         dishCardDiv.appendChild(dishImgDiv);
@@ -58,6 +59,7 @@
 
         var dishNameDiv = document.createElement("SPAN");
         dishNameDiv.classList.add("dish-name");
+        dishNameDiv.innerHTML = dish.name;
         dishInfoNameDiv.appendChild(dishNameDiv);
 
         var dishInfoVeganDiv = document.createElement("DIV");
@@ -65,6 +67,7 @@
 
         var dishVeganDiv = document.createElement("SPAN");
         dishVeganDiv.classList.add("dish-vegan");
+        dishVeganDiv.innerHTML = dish.vegan == true ? "Is Vegan" : "Is not Vegan";
         dishInfoVeganDiv.appendChild(dishVeganDiv);
 
         var dishInfoCostDiv = document.createElement("DIV");
@@ -72,7 +75,7 @@
 
         var dishCostDiv = document.createElement("SPAN");
         dishCostDiv.classList.add("dish-cost");
-        dishInfoCostDiv.innerHTML = "$";
+        dishCostDiv.innerHTML = "$" + dish.cost;
         dishInfoCostDiv.appendChild(dishCostDiv);
 
         var dishDetailDiv = document.createElement("DIV");
@@ -83,9 +86,10 @@
 
         var dishDetailDelDiv = document.createElement("DIV");
         dishDetailDelDiv.classList.add("dish-detail-del");
+        dishDetailDelDiv.setAttribute("id", "dish-id-" + dish.id);
 
         var dishDelImg = document.createElement("IMG");
-        dishDelImg.src = "del.png";
+        dishDelImg.src = "assets/del.png";
         dishDetailDelDiv.appendChild(dishDelImg);
 
         dishDetailDiv.appendChild(dishDetailPFDiv);
@@ -100,14 +104,37 @@
 
         return dishCardDiv;
       }
-      // document.getElementById("dish-delete").addEventListener("click", function (event) {});
+
+      function getDishes() {
+        return fetch("http://localhost:5000/dish")
+          .then((response) => response.json())
+          .then((json) => json);
+      }
+
+      async function draw() {
+        let dishes = await getDishes();
+        console.log(dishes);
+        dishes.forEach((dish) => {
+          var container = document.querySelector(".container");
+          container.appendChild(createDishCard(dish));
+        });
+
+        document.querySelector(".dish-detail-del").addEventListener("click", function (event) {
+          console.log(event.target);
+        });
+      }
+
       var container = document.querySelector(".container");
 
-      var dishlist = [1, 2, 3, 4, 5, 6, 7, 8];
+      window.onload = function () {
+        draw();
+      };
 
-      dishlist.forEach((dish) => {
-        container.appendChild(createDish());
-      });
+      // var dishlist = [1];
+
+      // dishlist.forEach((dish) => {
+      //   container.appendChild(createDishCard());
+      // });
 
       // container.appendChild(createDish());
       // container.appendChild(createDish());

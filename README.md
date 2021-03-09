@@ -1,3 +1,3 @@
 # ECSE3039-week7-tutorial
 
-Simple frontend to show how to prograatically create HTML elements and add them to the DOM using JavaScript.
+Simple frontend to show how to programmatically create HTML elements and add them to the DOM using JavaScript.

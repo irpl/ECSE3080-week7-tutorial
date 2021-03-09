@@ -22,14 +22,14 @@ div {
 .dish-img {
   /* border: 2px solid red; */
   /* background-color: blue; */
-  width: 100%;
+  /* width: 100%; */
   height: 50%;
   overflow: hidden;
   background-color: lightblue;
 }
 .dish-img > img {
   width: 100%;
-  transform: translateY(-100px);
+  /* transform: translateY(-0px); */
 }
 .dish-edit {
   background-color: green;
